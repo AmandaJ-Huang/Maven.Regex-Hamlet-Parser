@@ -16,6 +16,19 @@ public class HamletParserTest {
     public void testChangeHamletToLeon() {
         // Given
         String input = "The Tragedy of Hamlet, Prince of Denmark";
+        String expected = "The Tragedy of Leon, Prince of Denmark";
+
+        // When
+        String actual = hamletParser.changeHamletToLeon(input);
+
+        // Then
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testChangeHamletToLeonUpperCase() {
+        // Given
+        String input = "The Tragedy of HAMLET, Prince of Denmark";
         String expected = "The Tragedy of LEON, Prince of Denmark";
 
         // When
@@ -29,10 +42,23 @@ public class HamletParserTest {
     public void testChangeHoratioToTariq() {
         // Given
         String input = "If you do meet Horatio and Marcellus,";
+        String expected = "If you do meet Tariq and Marcellus,";
+
+        // When
+        String actual = hamletParser.changeHoratioToTariq(input);
+
+        // Then
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testChangeHoratioToTariqUpperCase() {
+        // Given
+        String input = "If you do meet HORATIO and Marcellus,";
         String expected = "If you do meet TARIQ and Marcellus,";
 
         // When
-        String actual = hamletParser.changeHoratioToTariuq(input);
+        String actual = hamletParser.changeHoratioToTariq(input);
 
         // Then
         Assert.assertEquals(expected, actual);

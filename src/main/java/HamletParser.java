@@ -10,6 +10,10 @@ import java.util.regex.Pattern;
 public class HamletParser {
 
     private String hamletData;
+    private Pattern hamletOnePattern = Pattern.compile("\\bHamlet\\b");
+    private Pattern hamletTwoPattern = Pattern.compile("\\bHAMLET\\b");
+    private Pattern horatioOnePattern = Pattern.compile("\\bHoratio\\b");
+    private Pattern horatioTwoPattern = Pattern.compile("\\bHORATIO\\b");
 
     public HamletParser(){
         this.hamletData = loadFile();
@@ -39,32 +43,50 @@ public class HamletParser {
     }
 
     public Integer findHamlet(String input) {
-        Pattern hamletNamePattern = Pattern.compile("\\bHamlet\\b");
-        Pattern hamletPersonPattern = Pattern.compile("\\bHAMLET\\b");
-        Matcher hamletNameMatcher = hamletNamePattern.matcher(input);
-        Matcher hamletPersonMatcher = hamletPersonPattern.matcher(input);
+        Matcher hamletOneMatcher = hamletOnePattern.matcher(input);
+        Matcher hamletTwoMatcher = hamletTwoPattern.matcher(input);
 
-        if (hamletNameMatcher.find()) {
+        if (hamletOneMatcher.find()) {
             return -1;
-        } else if (hamletPersonMatcher.find()) {
+        } else if (hamletTwoMatcher.find()) {
             return 1;
         }
-
         return 0;
     }
 
     public Integer findHoratio(String input) {
-        Pattern horatioPattern = Pattern.compile("\\bhoratio\\b", Pattern.CASE_INSENSITIVE);
-        Matcher horatioMatcher;
-        horatioMatcher = horatioPattern.matcher(input);
+        Matcher horatioOneMatcher = horatioOnePattern.matcher(input);
+        Matcher horatioTwoMatcher = horatioTwoPattern.matcher(input);
+
+        if (horatioOneMatcher.find()) {
+            return -1;
+        } else if (horatioTwoMatcher.find()) {
+            return 1;
+        }
         return 0;
     }
 
     public String changeHamletToLeon(String input) {
+        Matcher replacementOne = hamletOnePattern.matcher(input);
+        Matcher replacementTwo = hamletTwoPattern.matcher(input);
+
+        if (findHamlet(input) == -1) {
+            return replacementOne.replaceAll("Leon");
+        } else if (findHamlet(input) == 1) {
+            return replacementTwo.replaceAll("LEON");
+        }
         return null;
     }
 
-    public String changeHoratioToTariuq(String input) {
+    public String changeHoratioToTariq(String input) {
+        Matcher replacementOne = horatioOnePattern.matcher(input);
+        Matcher replacementTwo = horatioTwoPattern.matcher(input);
+
+        if (findHoratio(input) == -1) {
+            return replacementOne.replaceAll("Tariq");
+        } else if (findHoratio(input) == 1) {
+            return replacementTwo.replaceAll("TARIQ");
+        }
         return null;
     }
 }
