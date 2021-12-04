@@ -18,10 +18,28 @@ public class HamletParserTest {
 
     @Test
     public void testChangeHamletToLeon() {
+        // Given
+        String input = "The Tragedy of Hamlet, Prince of Denmark";
+        String expected = "The Tragedy of LEON, Prince of Denmark";
+
+        // When
+        String actual = hamletParser.changeHamletToLeon(input);
+
+        // Then
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
     public void testChangeHoratioToTariq() {
+        // Given
+        String input = "If you do meet Horatio and Marcellus,";
+        String expected = "If you do meet TARIQ and Marcellus,";
+
+        // When
+        String actual = hamletParser.changeHoratioToTariuq(input);
+
+        // Then
+        Assert.assertEquals(expected, actual);
     }
 
     @Test

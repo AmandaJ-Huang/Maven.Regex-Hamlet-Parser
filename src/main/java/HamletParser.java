@@ -10,6 +10,10 @@ import java.util.regex.Pattern;
 public class HamletParser {
 
     private String hamletData;
+    private Pattern hamletPattern = Pattern.compile("\\bhamlet\\b", Pattern.CASE_INSENSITIVE);
+    private Pattern horatioPattern = Pattern.compile("\\bhoratio\\b", Pattern.CASE_INSENSITIVE);
+    private Matcher hamletMatcher;
+    private Matcher horatioMatcher;
 
     public HamletParser(){
         this.hamletData = loadFile();
@@ -39,14 +43,22 @@ public class HamletParser {
     }
 
     public Boolean findHamlet(String input) {
-        Pattern p = Pattern.compile("\\bhamlet\\b", Pattern.CASE_INSENSITIVE);
-        Matcher m = p.matcher(input);
-        return m.find();
+        hamletMatcher = hamletPattern.matcher(input);
+        return hamletMatcher.find();
     }
 
     public Boolean findHoratio(String input) {
-        Pattern p = Pattern.compile("\\bhoratio\\b", Pattern.CASE_INSENSITIVE);
-        Matcher m = p.matcher(input);
-        return m.find();
+        horatioMatcher = horatioPattern.matcher(input);
+        return horatioMatcher.find();
+    }
+
+    public String changeHamletToLeon(String input) {
+        hamletMatcher = hamletPattern.matcher(input);
+        return hamletMatcher.replaceAll("LEON");
+    }
+
+    public String changeHoratioToTariuq(String input) {
+        horatioMatcher = horatioPattern.matcher(input);
+        return horatioMatcher.replaceAll("TARIQ");
     }
 }
