@@ -10,10 +10,6 @@ import java.util.regex.Pattern;
 public class HamletParser {
 
     private String hamletData;
-    private Pattern hamletPattern = Pattern.compile("\\bhamlet\\b", Pattern.CASE_INSENSITIVE);
-    private Pattern horatioPattern = Pattern.compile("\\bhoratio\\b", Pattern.CASE_INSENSITIVE);
-    private Matcher hamletMatcher;
-    private Matcher horatioMatcher;
 
     public HamletParser(){
         this.hamletData = loadFile();
@@ -42,23 +38,33 @@ public class HamletParser {
         return hamletData;
     }
 
-    public Boolean findHamlet(String input) {
-        hamletMatcher = hamletPattern.matcher(input);
-        return hamletMatcher.find();
+    public Integer findHamlet(String input) {
+        Pattern hamletNamePattern = Pattern.compile("\\bHamlet\\b");
+        Pattern hamletPersonPattern = Pattern.compile("\\bHAMLET\\b");
+        Matcher hamletNameMatcher = hamletNamePattern.matcher(input);
+        Matcher hamletPersonMatcher = hamletPersonPattern.matcher(input);
+
+        if (hamletNameMatcher.find()) {
+            return -1;
+        } else if (hamletPersonMatcher.find()) {
+            return 1;
+        }
+
+        return 0;
     }
 
-    public Boolean findHoratio(String input) {
+    public Integer findHoratio(String input) {
+        Pattern horatioPattern = Pattern.compile("\\bhoratio\\b", Pattern.CASE_INSENSITIVE);
+        Matcher horatioMatcher;
         horatioMatcher = horatioPattern.matcher(input);
-        return horatioMatcher.find();
+        return 0;
     }
 
     public String changeHamletToLeon(String input) {
-        hamletMatcher = hamletPattern.matcher(input);
-        return hamletMatcher.replaceAll("LEON");
+        return null;
     }
 
     public String changeHoratioToTariuq(String input) {
-        horatioMatcher = horatioPattern.matcher(input);
-        return horatioMatcher.replaceAll("TARIQ");
+        return null;
     }
 }

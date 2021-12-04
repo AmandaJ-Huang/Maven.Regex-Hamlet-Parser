@@ -2,10 +2,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.regex.Pattern;
-
-import static org.junit.Assert.*;
-
 public class HamletParserTest {
     private String hamletText;
     private HamletParser hamletParser;
@@ -48,30 +44,27 @@ public class HamletParserTest {
         String lineTwentyNine = "If you do meet Horatio and Marcellus,";
 
         // When
-        Boolean actual = hamletParser.findHoratio(lineTwentyNine);
+        Integer actual = hamletParser.findHoratio(lineTwentyNine);
 
         // Then
-        Assert.assertTrue(actual);
+
     }
 
     @Test
     public void testFindHamlet() {
         // Given
         String title = "The Tragedy of Hamlet, Prince of Denmark";
-        String upperHamlet = "HAMLET";
-        String lowerHamlet = "hamlet";
-        String justHamlet =  "Hamlet";
+        Integer expected = -1;
+        String enter = "Enter KING CLAUDIUS, QUEEN GERTRUDE, HAMLET, POLONIUS, LAERTES, VOLTIMAND, CORNELIUS, Lords, and Attendants\n" +
+                "KING CLAUDIUS";
+        Integer expectedEnter = 1;
 
         // When
-        Boolean actual = hamletParser.findHamlet(title);
-        Boolean actualUpperHamlet = hamletParser.findHamlet(upperHamlet);
-        Boolean actualLowerHamlet = hamletParser.findHamlet(lowerHamlet);
-        Boolean actualJustHamlet = hamletParser.findHamlet(justHamlet);
+        Integer actual = hamletParser.findHamlet(title);
+        Integer actualEnter = hamletParser.findHamlet(enter);
 
         // Then
-        Assert.assertTrue(actual);
-        Assert.assertTrue(actualUpperHamlet);
-        Assert.assertTrue(actualLowerHamlet);
-        Assert.assertTrue(actualJustHamlet);
+        Assert.assertEquals(expected, actual);
+        Assert.assertEquals(expectedEnter, actualEnter);
     }
 }
