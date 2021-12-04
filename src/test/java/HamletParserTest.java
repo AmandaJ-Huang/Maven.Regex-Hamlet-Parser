@@ -26,6 +26,14 @@ public class HamletParserTest {
 
     @Test
     public void testFindHoratio() {
+        // Given
+        String lineTwentyNine = "If you do meet Horatio and Marcellus,";
+
+        // When
+        Boolean actual = hamletParser.findHoratio(lineTwentyNine);
+
+        // Then
+        Assert.assertTrue(actual);
     }
 
     @Test
@@ -48,5 +56,4 @@ public class HamletParserTest {
         Assert.assertTrue(actualLowerHamlet);
         Assert.assertTrue(actualJustHamlet);
     }
-
 }

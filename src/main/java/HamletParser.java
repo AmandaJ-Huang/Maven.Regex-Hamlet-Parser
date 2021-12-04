@@ -39,9 +39,14 @@ public class HamletParser {
     }
 
     public Boolean findHamlet(String input) {
-        Pattern p = Pattern.compile("\\bHamlet\\b", Pattern.CASE_INSENSITIVE);
+        Pattern p = Pattern.compile("\\bhamlet\\b", Pattern.CASE_INSENSITIVE);
         Matcher m = p.matcher(input);
         return m.find();
     }
 
+    public Boolean findHoratio(String input) {
+        Pattern p = Pattern.compile("\\bhoratio\\b", Pattern.CASE_INSENSITIVE);
+        Matcher m = p.matcher(input);
+        return m.find();
+    }
 }
