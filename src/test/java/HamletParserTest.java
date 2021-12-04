@@ -1,5 +1,8 @@
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.regex.Pattern;
 
 import static org.junit.Assert.*;
 
@@ -27,5 +30,23 @@ public class HamletParserTest {
 
     @Test
     public void testFindHamlet() {
+        // Given
+        String title = "The Tragedy of Hamlet, Prince of Denmark";
+        String upperHamlet = "HAMLET";
+        String lowerHamlet = "hamlet";
+        String justHamlet =  "Hamlet";
+
+        // When
+        Boolean actual = hamletParser.findHamlet(title);
+        Boolean actualUpperHamlet = hamletParser.findHamlet(upperHamlet);
+        Boolean actualLowerHamlet = hamletParser.findHamlet(lowerHamlet);
+        Boolean actualJustHamlet = hamletParser.findHamlet(justHamlet);
+
+        // Then
+        Assert.assertTrue(actual);
+        Assert.assertTrue(actualUpperHamlet);
+        Assert.assertTrue(actualLowerHamlet);
+        Assert.assertTrue(actualJustHamlet);
     }
+
 }
