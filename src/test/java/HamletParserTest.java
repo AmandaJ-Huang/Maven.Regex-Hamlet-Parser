@@ -93,4 +93,20 @@ public class HamletParserTest {
         Assert.assertEquals(expected, actual);
         Assert.assertEquals(expectedEnter, actualEnter);
     }
+
+    @Test
+    public void testChangeHamletAndHoratio() {
+        // Given
+        Integer expected = 0;
+
+        // When
+        String hamletAndHoratioBegone = hamletParser.changeHamletAndHoratio(hamletText);
+        Integer hamletFound = hamletParser.findHamlet(hamletAndHoratioBegone);
+        Integer horatioFound = hamletParser.findHoratio(hamletAndHoratioBegone);
+        System.out.println(hamletAndHoratioBegone);
+
+        // Then
+        Assert.assertEquals(expected, hamletFound);
+        Assert.assertEquals(expected, horatioFound);
+    }
 }

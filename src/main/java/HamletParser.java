@@ -75,7 +75,7 @@ public class HamletParser {
         } else if (findHamlet(input) == 1) {
             return replacementTwo.replaceAll("LEON");
         }
-        return null;
+        return input;
     }
 
     public String changeHoratioToTariq(String input) {
@@ -87,6 +87,15 @@ public class HamletParser {
         } else if (findHoratio(input) == 1) {
             return replacementTwo.replaceAll("TARIQ");
         }
-        return null;
+        return input;
+    }
+
+    public String changeHamletAndHoratio(String input) {
+        String result = input;
+        while (findHamlet(result) != 0 && findHoratio(result) != 0) {
+            result = changeHamletToLeon(result);
+            result = changeHoratioToTariq(result);
+        }
+        return result;
     }
 }
