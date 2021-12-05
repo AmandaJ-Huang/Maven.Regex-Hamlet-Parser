@@ -10,10 +10,10 @@ import java.util.regex.Pattern;
 public class HamletParser {
 
     private String hamletData;
-    private Pattern hamletOnePattern = Pattern.compile("\\bHamlet\\b");
-    private Pattern hamletTwoPattern = Pattern.compile("\\bHAMLET\\b");
-    private Pattern horatioOnePattern = Pattern.compile("\\bHoratio\\b");
-    private Pattern horatioTwoPattern = Pattern.compile("\\bHORATIO\\b");
+    private Pattern hamletOnePattern = Pattern.compile("Hamlet");
+    private Pattern hamletTwoPattern = Pattern.compile("HAMLET");
+    private Pattern horatioOnePattern = Pattern.compile("Horatio");
+    private Pattern horatioTwoPattern = Pattern.compile("HORATIO");
 
     public HamletParser(){
         this.hamletData = loadFile();
